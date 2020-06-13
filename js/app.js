@@ -39,7 +39,7 @@ const sendMessage = (e) => {
     }
     const completePhoneNumber = createValidNumber(selector.value + wnumber.value)
     // TODO is wnumber legth is bigger than 10 return and tell the user it should be just 10 digits
-    // window.open(`https://wa.me/${completePhoneNumber}`)
+    window.open(`https://wa.me/${completePhoneNumber}`)
 }
 
 // **************** 
