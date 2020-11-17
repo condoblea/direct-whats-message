@@ -46,10 +46,8 @@
     margin: 16px auto 0px auto;
     max-width: 300px;
 }
-#selector {
-    width: 100%;
-}
-#wnumber {
+#selector, #wnumber{
+    height: 40px;
     width: 100%;
 }
 #sendButton {

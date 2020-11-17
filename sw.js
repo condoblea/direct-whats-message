@@ -19,7 +19,7 @@ self.addEventListener('install', e => {
             cache.addAll( app_shell )
         })
     
-    e.wailUntil( cache_static )
+    e.waitUntil( cache_static )
 })
 
 self.addEventListener('fetch', e => {
