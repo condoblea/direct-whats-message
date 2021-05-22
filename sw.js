@@ -4,15 +4,15 @@ const dynamic_cache = "dynamic-v1";
 //TODO clear old cache and manage update ui"
 
 const app_shell = [
-    '/',
-    'index.html',
-    'css/style.css',
-    'img/favicon.ico',
-    'js/app.js',
-    'manifest.json'
+  "/",
+  "index.html",
+  "css/style.css",
+  "img/favicon.ico",
+  "js/app.js",
+  "manifest.json",
 ];
 
-self.addEventListener('install', (e) => {
+self.addEventListener("install", (e) => {
   const cache_static = caches.open(static_cache).then((cache) => {
     cache.addAll(app_shell);
   });
@@ -69,19 +69,22 @@ self.addEventListener('install', (e) => {
 //     )
 // });
 
-self.addEventListener('fetch', function(e){
-    const respuesta = caches.match(e.request).then(res => {
-        if( res ) return res
-        return fetch( e.request ).then( newRes => {
-            //TODO It works correctly but after the first reload in offline mode
-            // it doesnt work and a second reload has to be done to go back to normal
-            if(newRes.ok) {
-                caches.open(dynamic_cache).then( cache => {
-                    cache.put(e.request, newRes)
-                })
-            }
-            return newRes.clone()
-        })
-    })
-    e.respondWith( respuesta )
-})
+self.addEventListener("fetch", function (e) {
+  const respuesta = caches.match(e.request).then((res) => {
+    console.log("antes", res);
+    if (res) {
+      console.log("entre al iffff", res);
+      return res;
+    } else {
+      return fetch(e.request).then((newRes) => {
+        if (newRes.ok) {
+          caches.open(dynamic_cache).then((cache) => {
+            cache.put(e.request, newRes);
+          });
+        }
+        return newRes.clone();
+      });
+    }
+  });
+  e.respondWith(respuesta);
+});

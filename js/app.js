@@ -31,13 +31,13 @@ fetch('https://country-cities.herokuapp.com/api/v0.1/countries/codes', init)
 // ****************
 const sendMessage = (e) => {
   e.preventDefault();
-  const phoneNumber = wnumber.value;
-  if (phoneNumber.length > 10 || phoneNumber.length < 10) {
-    alert("El numero debe ser valido");
+  var numberPattern = /\d+/g;
+  const phoneNumber = wnumber.value.match( numberPattern ).join('');
+  if (phoneNumber.length != 10) {
+    alert("Ingresa un numero valido de 10 digitos");
     return;
   }
-  const completePhoneNumber = createValidNumber(selector.value + wnumber.value);
-  // TODO is wnumber legth is bigger than 10 return and tell the user it should be just 10 digits
+  const completePhoneNumber = createValidNumber(selector.value) + phoneNumber;
   window.open(`https://wa.me/${completePhoneNumber}`);
 };
 
