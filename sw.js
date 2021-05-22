@@ -1,5 +1,5 @@
-const static_cache = "static-v1";
-const dynamic_cache = "dynamic-v1";
+const static_cache = "static-v2";
+const dynamic_cache = "dynamic-v2";
 
 //TODO clear old cache and manage update ui"
 
@@ -71,9 +71,7 @@ self.addEventListener("install", (e) => {
 
 self.addEventListener("fetch", function (e) {
   const respuesta = caches.match(e.request).then((res) => {
-    console.log("antes", res);
     if (res) {
-      console.log("entre al iffff", res);
       return res;
     } else {
       return fetch(e.request).then((newRes) => {

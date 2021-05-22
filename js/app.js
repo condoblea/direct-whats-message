@@ -26,6 +26,10 @@ fetch('https://country-cities.herokuapp.com/api/v0.1/countries/codes', init)
       option.innerHTML = element.name;
       selector.appendChild(option);
     });
+    const lastSelection = getLastSelection();
+    if( lastSelection ) {
+      selector.value = lastSelection;
+    }
   });
 
 // ****************
@@ -34,14 +38,23 @@ const sendMessage = (e) => {
   var numberPattern = /\d+/g;
   const phoneNumber = wnumber.value.match( numberPattern ).join('');
   if (phoneNumber.length != 10) {
-    alert("Ingresa un numero valido de 10 digitos");
+    alert("Enter a valid 10-digit number");
     return;
   }
+  saveLastSelection(selector.value);
   const completePhoneNumber = createValidNumber(selector.value) + phoneNumber;
   window.open(`https://wa.me/${completePhoneNumber}`);
 };
 
 // ****************
+const saveLastSelection = (countryCode) => {
+  localStorage.setItem("lastCountry", countryCode);
+}
+
+const getLastSelection = () => {
+  return localStorage.getItem("lastCountry");
+}
+
 const createValidNumber = (str) => {
   let validNumber = "";
   for (let s of str) {
