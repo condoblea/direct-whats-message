@@ -1,5 +1,12 @@
-if (navigator.serviceWorker) {
-  navigator.serviceWorker.register("/sw.js");
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').then(function(registration) {
+  console.log('ServiceWorker registration successful with scope: ', registration.scope);
+}).catch(function(err) {
+  console.log('ServiceWorker registration failed: ', err);
+});
+}else {
+console.log('No service-worker on this browser');
 }
 
 const wnumber = document.getElementById("wnumber");
