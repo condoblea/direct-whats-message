@@ -1,4 +1,4 @@
-const static_cache = "static-v3";
+const static_cache = "static-v4";
 const dynamic_cache = "dynamic-v2";
 
 //TODO clear old cache and manage update ui"

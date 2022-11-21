@@ -50,7 +50,7 @@ const sendMessage = (e) => {
   }
   saveLastSelection(selector.value);
   const completePhoneNumber = createValidNumber(selector.value) + phoneNumber;
-  window.open(`https://wa.me/${completePhoneNumber}`);
+  window.location.href = `https://api.whatsapp.com/send?phone=${completePhoneNumber}`;
 };
 
 // ****************
